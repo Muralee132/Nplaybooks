@@ -1,0 +1,11 @@
+
+---
+- name: This play book is to create directory
+  hosts: all
+  become: yes
+
+  tasks:
+  -  name: creating directory
+     file:
+       path: /tmp/devops_directory
+       state: directory      

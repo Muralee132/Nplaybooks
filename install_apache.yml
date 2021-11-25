@@ -1,0 +1,35 @@
+
+---
+- name: my test play book
+  hosts: all
+  become: yes
+
+  tasks:
+  - name: Installing httpd
+    yum:
+      name: httpd
+      state: installed
+    when: ansible_os_family == "RedHat"
+
+  
+  - name: Starting httpd
+    service:
+       name: httpd
+       state: started
+    when: ansible_os_family == "RedHat"  
+    
+
+
+  - name: Installing Apache2
+    yum:
+      name: Apache2
+      state: installed
+    when: ansible_os_family == "Debian"
+
+
+
+  - name: Starting Apache2
+    service:
+       name: Apache2
+       state: started
+    when: ansible_os_family == "Debian"   

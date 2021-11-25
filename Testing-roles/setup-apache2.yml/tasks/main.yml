@@ -1,0 +1,21 @@
+---
+# tasks file for setup-apache2.yml
+- name: Installing httpd
+  yum: 
+    name: httpd
+    state: installed
+  when: ansible_os_family == "RedHat"
+  notify: starting httpd
+
+- name: Installing apache2
+  yum:
+    name: apache2
+    state: installed
+  when: ansible_os_family == "Debian"
+  notify: startng apache2
+
+- name: Copy index.html
+  copy:
+    src: /home/ansadmin/index.html
+    dest: /var/www/html
+    mode: 0666     
